@@ -1,23 +1,60 @@
-import logo from './logo.svg';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
+import Main from './Layout/Main';
+
+
+import FAQ from './FAQ/FAQ';
+import Courses from './Course/Courses';
+import Vlog from './vlog/Vlog';
+import Home from './Home/Home';
+import Login from './Login/Login';
+
+
+
+// import {getauth, GoogleAuthProvider} from 'firebase/auth'
+// import app from './firebase/firebase.init';
+// const auth = getauth(app);
+
+
 function App() {
+// const provider = new GoogleAuthProvider ();
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Main></Main>,
+    children:[
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/Courses',
+        element: <Courses></Courses>
+      },
+      {
+        path:'/FAQ',
+        element: <FAQ></FAQ>
+      },
+      {
+        path:'/Vlog',
+        element: <Vlog></Vlog>
+      },
+      {
+        path:'/Login',
+        element:<Login></Login>
+      }
+    ]
+  }
+])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+      <RouterProvider router ={router} >
+
+</RouterProvider>
     </div>
   );
 }
